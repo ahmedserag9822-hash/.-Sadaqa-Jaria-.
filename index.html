@@ -3,26 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صدقة جارية</title>
+    <title>صدقة جارية لروح الحاجة هدي</title>
     <style>
-        body { font-family: Tahoma, sans-serif; background: #0f172a; color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; }
-        .card { background: #1e293b; padding: 25px; border-radius: 20px; width: 320px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
-        h2 { color: #38bdf8; margin-bottom: 15px; }
-        .counter { font-size: 45px; font-weight: bold; color: #fbbf24; margin: 15px 0; }
-        button { background: #0ea5e9; color: white; border: none; width: 100%; padding: 14px; font-size: 18px; border-radius: 30px; cursor: pointer; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif, Tahoma;
+        }
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+        }
+        h1 {
+            font-size: 1.5rem;
+            color: #93c5fd;
+            margin-bottom: 10px;
+        }
+        .name {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .counter-box {
+            background: #0f172a;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 2px solid #3b82f6;
+        }
+        #count {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #fbbf24;
+            margin-bottom: 15px;
+        }
+        .btn-tasbih {
+            width: 100%;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+            transition: 0.2s;
+            margin-bottom: 15px;
+        }
+        .btn-tasbih:active {
+            transform: scale(0.97);
+        }
+        .btn-reset {
+            background: transparent;
+            color: #94a3b8;
+            border: 1px solid #475569;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .btn-reset:hover {
+            background: #334155;
+            color: #fff;
+        }
+        .duaa-section {
+            margin-top: 30px;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            border-right: 4px solid #fbbf24;
+            text-align: right;
+        }
+        .duaa-section h3 {
+            color: #fbbf24;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        .duaa-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e2e8f0;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 0.95rem;
+            color: #94a3b8;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <p>صدقة جارية على روح</p>
-        <h2>ستي رحمة الله عليها ♡︎الحاجه هدي ♡︎</h2>
-        <div class="counter" id="c">0</div>
-        <button onclick="up()">سبحان الله وبحمده</button>
+
+    <div class="container">
+        <h1>صدقة جارية على روح</h1>
+        <div class="name">الحاجة هدي رحمها الله 🤍</div>
+
+        <div class="counter-box">
+            <div id="count">0</div>
+            <button class="btn-tasbih" onclick="incrementCount()">سبحان الله وبحمده</button>
+            <button class="btn-reset" onclick="resetCount()">تصفير العداد</button>
+        </div>
+
+        <div class="duaa-section">
+            <h3>دعاء للميت:</h3>
+            <p>“اللهم اجعل قبرها روضة من رياض الجنة، ولا تجعله حفرة من حفر النيران. اللهم ارحمها برحمتك الواسعة وأسكنها فسيح جناتك.”</p>
+        </div>
     </div>
+
+    <footer>
+        موقع صدقة جارية - لا توقف النشر والدعاء لها
+    </footer>
+
     <script>
-        let n = localStorage.getItem('s') || 0;
-        document.getElementById('c').innerText = n;
-        function up() { n++; document.getElementById('c').innerText = n; localStorage.setItem('s', n); }
+        let count = 0;
+        const countDisplay = document.getElementById('count');
+
+        function incrementCount() {
+            count++;
+            countDisplay.innerText = count;
+        }
+
+        function resetCount() {
+            if(confirm('هل تريد تصفير العداد؟')) {
+                count = 0;
+                countDisplay.innerText = count;
+            }
+        }
     </script>
-</body>
+</bod><footer style="text-align: center; padding: 20px; color: #94a3b8; font-size: 0.95rem;">
+    موقع صدقة جارية علي روح جدتي الحاجة هدي رحمها الله 🤍<br>
+    <span style="color: #60a5fa; font-size: 0.9rem; margin-top: 5px; display: inline-block;">
+        تصميم وبرمجة: أحمد سراج (لعمل موقع صدقة جارية  تواصل معنا (01020936772)
+    </span>
+</footer>
+    
 </html>
+
