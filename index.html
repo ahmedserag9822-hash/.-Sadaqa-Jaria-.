@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صدقة جارية لروح الحاجة هدي</title>
+    <title>صدقة جارية لروح جدتي الحاجة هدي رحمها الله</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,264 +13,198 @@
             font-family: 'Cairo', sans-serif;
         }
         body {
-            background-color: #0b0f19;
-            color: #ffffff;
+            background-color: #f8fafc;
+            color: #1e293b;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            position: relative;
-            overflow-x: hidden;
         }
-        /* خلفية فيديو متحركة أو تأثير فخم */
-        .bg-video {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .main-wrapper {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -2;
-            opacity: 0.3;
-        }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(11, 15, 25, 0.85);
-            z-index: -1;
-        }
-        .container {
-            width: 100%;
-            max-width: 480px;
+            max-width: 500px;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             margin: auto;
         }
-        .header-title {
-            font-size: 1.1rem;
-            color: #94a3b8;
-            margin-bottom: 5px;
+        .header-box {
+            text-align: center;
+            margin-bottom: 25px;
+            background: #ffffff;
+            padding: 25px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+        .dedication {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 8px;
             font-weight: 600;
         }
-        .name-title {
-            font-size: 1.8rem;
+        .deceased-name {
+            font-size: 1.6rem;
             font-weight: 900;
-            color: #f43f5e;
-            margin-bottom: 20px;
-            text-align: center;
-            text-shadow: 0 0 15px rgba(244, 63, 94, 0.3);
+            color: #e11d48;
+            line-height: 1.4;
         }
-        /* مشغل القرآن */
-        .quran-card {
-            width: 100%;
-            background: rgba(30, 41, 59, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 12px 15px;
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            backdrop-filter: blur(10px);
-        }
-        .quran-info {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            color: #38bdf8;
-        }
-        audio {
-            width: 100%;
-            height: 35px;
-            border-radius: 8px;
-        }
-        /* بطاقة العداد الرئيسية */
+        /* كارد العداد الأساسي */
         .counter-card {
-            width: 100%;
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
+            background: #ffffff;
+            border-radius: 20px;
             padding: 30px 20px;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
         }
-        .counter-display {
-            font-size: 4.5rem;
+        .zekr-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+        .counter-number {
+            font-size: 4rem;
             font-weight: 900;
-            color: #38bdf8;
-            margin: 10px 0 20px 0;
-            text-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
-            transition: transform 0.1s ease;
+            color: #0284c7;
+            margin-bottom: 20px;
         }
-        .tasbeh-btn {
-            background: linear-gradient(135deg, #0284c7, #0369a1);
+        .click-btn {
+            background: #0284c7;
             color: white;
             border: none;
             width: 100%;
             padding: 16px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            border-radius: 50px;
+            border-radius: 14px;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(2, 132, 199, 0.4);
-            transition: 0.2s ease;
-            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+            transition: 0.1s ease;
+            margin-bottom: 12px;
         }
-        .tasbeh-btn:active {
-            transform: scale(0.96);
+        .click-btn:active {
+            transform: scale(0.97);
+            background: #0369a1;
         }
         .actions-row {
             display: flex;
-            justify-content: space-between;
             gap: 10px;
         }
-        .action-btn {
-            background: rgba(255, 255, 255, 0.05);
-            color: #94a3b8;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 15px;
-            font-size: 0.85rem;
-            border-radius: 12px;
+        .sub-btn {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 10px;
             cursor: pointer;
             flex: 1;
             transition: 0.2s;
         }
-        .action-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
+        .sub-btn:hover {
+            background: #e2e8f0;
         }
-        /* قسم الدعاء */
-        .dua-box {
-            width: 100%;
-            margin-top: 20px;
-            background: rgba(15, 23, 42, 0.6);
-            border-right: 4px solid #f43f5e;
-            padding: 15px;
-            border-radius: 12px;
+        /* قسم الدعاء للمتوفى */
+        .dua-card {
+            background: #fff1f2;
+            border: 1px solid #fecdd3;
+            border-radius: 16px;
+            padding: 20px;
             text-align: right;
+            margin-bottom: 20px;
         }
-        .dua-box h4 {
-            color: #f43f5e;
-            font-size: 1rem;
-            margin-bottom: 5px;
+        .dua-card h3 {
+            color: #be123c;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
         }
-        .dua-box p {
-            color: #cbd5e1;
-            font-size: 0.9rem;
-            line-height: 1.5;
+        .dua-card p {
+            color: #881337;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
-        /* الفوتر الفخم */
+        /* الفوتر والتوقيع */
         footer {
             width: 100%;
             text-align: center;
             padding: 20px;
-            color: #94a3b8;
+            color: #64748b;
             font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 20px;
-            background: rgba(11, 15, 25, 0.9);
-            line-height: 1.6;
+            border-top: 1px solid #e2e8f0;
+            background: #ffffff;
         }
-        footer .creator {
-            color: #60a5fa;
-            font-size: 0.9rem;
+        footer .signature {
+            color: #0284c7;
+            font-weight: 700;
             margin-top: 5px;
             display: block;
-            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-    <!-- خلفية فيديو روحانية هادئة -->
-    <video autoplay muted loop class="bg-video">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-stars-in-the-night-sky-background-4056-large.mp4" type="video/mp4">
-    </video>
-    <div class="overlay"></div>
-
-    <div class="container">
-        <div class="header-title">صدقة جارية على روح</div>
-        <div class="name-title">الحاجة هدي رحمة الله عليها 🤍</div>
-
-        <!-- مشغل القرآن الكريم -->
-        <div class="quran-card">
-            <div class="quran-info">
-                <span>📖 استمع إلى القرآن الكريم</span>
-                <span style="font-size: 0.8rem; color: #cbd5e1;">القرآن بصوت الشيخ ماهر المعقيلي</span>
-            </div>
-            <audio controls>
-                <source src="https://server11.mp3quran.net/sds/001.mp3" type="audio/mpeg">
-                متصفحك لا يدعم تشغيل الصوت
-            </audio>
+    <div class="main-wrapper">
+        <div class="header-box">
+            <div class="dedication">صدقة جارية على روح</div>
+            <div class="deceased-name">الحاجة هدي رحمة الله عليها 🤍</div>
         </div>
 
-        <!-- بطاقة التسبيح والعداد -->
         <div class="counter-card">
-            <div style="font-size: 0.95rem; color: #94a3b8;">اضغط للتسبيح والدعاء</div>
-            <div class="counter-display" id="counter">0</div>
+            <div class="zekr-title" id="zekrText">سبحان الله وبحمده</div>
+            <div class="counter-number" id="countDisplay">0</div>
             
-            <button class="tasbeh-btn" onclick="increment()">سبحان الله وبحمده</button>
+            <button class="click-btn" onclick="increment()">اضغط للتسبيح</button>
             
             <div class="actions-row">
-                <button class="action-btn" onclick="resetCounter()">تصفير العداد</button>
-                <button class="action-btn" onclick="changeZekr()">تغيير الذكر</button>
+                <button class="sub-btn" onclick="resetCounter()">تصفير العداد</button>
+                <button class="sub-btn" onclick="nextZekr()">تغيير الذكر</button>
             </div>
         </div>
 
-        <!-- دعاء للميت -->
-        <div class="dua-box">
-            <h4>دعاء للمتوفاة</h4>
+        <div class="dua-card">
+            <h3>دعاء للمتوفاة</h3>
             <p>اللهم ارحمها واغفر لها ووسع مدخلها، وأبدلها داراً خيراً من دارها، وأهلاً خيراً من أهلها، واجعل قبرها روضة من رياض الجنة 🤍</p>
         </div>
     </div>
 
     <footer>
-        موقع صدقة جارية لروح الحاجة هدي رحمها الله 🤍<br>
-        <span class="creator">تصميم وبرمجة: أحمد سراج (لعمل موقع صدقة جارية تواصل معنا: 01020936772)</span>
+        موقع صدقة جارية لروح الحاجة هدي رحمها الله
+        <span class="signature">تصميم وبرمجة: أحمد سراج (لعمل موقع صدقة جارية تواصل معنا: 01020936772)</span>
     </footer>
 
     <script>
         let count = 0;
-        const counterDisplay = document.getElementById('counter');
-        
-        const azkar = [
+        const countDisplay = document.getElementById('countDisplay');
+        const zekrText = document.getElementById('zekrText');
+
+        const azkarList = [
             "سبحان الله وبحمده",
             "سبحان الله العظيم",
             "لا إله إلا الله",
-            "استغفر الله العظيم واتوب إليه",
+            "أستغفر الله العظيم واتوب إليه",
             "اللهم صل وسلم على نبينا محمد",
-            "لاحول ولا قوة إلا بالله"
+            "لا حول ولا قوة إلا بالله"
         ];
-        let zekrIndex = 0;
-        const tasbehBtn = document.querySelector('.tasbeh-btn');
+        let currentIndex = 0;
 
         function increment() {
             count++;
-            counterDisplay.innerText = count;
-            counterDisplay.style.transform = "scale(1.1)";
-            setTimeout(() => {
-                counterDisplay.style.transform = "scale(1)";
-            }, 100);
+            countDisplay.innerText = count;
         }
 
         function resetCounter() {
             if(confirm('هل تريد تصفير العداد؟')) {
                 count = 0;
-                counterDisplay.innerText = count;
+                countDisplay.innerText = count;
             }
         }
 
-        function changeZekr() {
-            zekrIndex = (zekrIndex + 1) % azkar.length;
-            tasbehBtn.innerText = azkar[zekrIndex];
+        function nextZekr() {
+            currentIndex = (currentIndex + 1) % azkarList.length;
+            zekrText.innerText = azkarList[currentIndex];
         }
     </script>
 </body>
