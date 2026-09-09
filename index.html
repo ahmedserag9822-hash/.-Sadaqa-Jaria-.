@@ -1,162 +1,278 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صدقة جارية لروح الحاجة هدي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Cairo', sans-serif, Tahoma;
+            font-family: 'Cairo', sans-serif;
         }
         body {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: #f8fafc;
+            background-color: #0b0f19;
+            color: #ffffff;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        /* خلفية فيديو متحركة أو تأثير فخم */
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.3;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 15, 25, 0.85);
+            z-index: -1;
         }
         .container {
             width: 100%;
-            max-width: 600px;
-            background: rgba(30, 41, 59, 0.8);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 480px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: auto;
+        }
+        .header-title {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .name-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #f43f5e;
+            margin-bottom: 20px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 20px;
+            text-shadow: 0 0 15px rgba(244, 63, 94, 0.3);
         }
-        h1 {
-            font-size: 1.5rem;
-            color: #93c5fd;
-            margin-bottom: 10px;
-        }
-        .name {
-            font-size: 2rem;
-            color: #ffffff;
-            margin-bottom: 25px;
-            font-weight: bold;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        .counter-box {
-            background: #0f172a;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 25px;
-            border: 2px solid #3b82f6;
-        }
-        #count {
-            font-size: 4rem;
-            font-weight: bold;
-            color: #fbbf24;
-            margin-bottom: 15px;
-        }
-        .btn-tasbih {
+        /* مشغل القرآن */
+        .quran-card {
             width: 100%;
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+        }
+        .quran-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #38bdf8;
+        }
+        audio {
+            width: 100%;
+            height: 35px;
+            border-radius: 8px;
+        }
+        /* بطاقة العداد الرئيسية */
+        .counter-card {
+            width: 100%;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+        }
+        .counter-display {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #38bdf8;
+            margin: 10px 0 20px 0;
+            text-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+            transition: transform 0.1s ease;
+        }
+        .tasbeh-btn {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
             color: white;
             border: none;
-            padding: 20px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border-radius: 12px;
+            width: 100%;
+            padding: 16px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-            transition: 0.2s;
+            box-shadow: 0 8px 20px rgba(2, 132, 199, 0.4);
+            transition: 0.2s ease;
             margin-bottom: 15px;
         }
-        .btn-tasbih:active {
-            transform: scale(0.97);
+        .tasbeh-btn:active {
+            transform: scale(0.96);
         }
-        .btn-reset {
-            background: transparent;
+        .actions-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .action-btn {
+            background: rgba(255, 255, 255, 0.05);
             color: #94a3b8;
-            border: 1px solid #475569;
-            padding: 8px 20px;
-            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            font-size: 0.85rem;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 0.9rem;
+            flex: 1;
             transition: 0.2s;
         }
-        .btn-reset:hover {
-            background: #334155;
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
             color: #fff;
         }
-        .duaa-section {
-            margin-top: 30px;
+        /* قسم الدعاء */
+        .dua-box {
+            width: 100%;
+            margin-top: 20px;
             background: rgba(15, 23, 42, 0.6);
-            padding: 20px;
-            border-radius: 15px;
-            border-right: 4px solid #fbbf24;
+            border-right: 4px solid #f43f5e;
+            padding: 15px;
+            border-radius: 12px;
             text-align: right;
         }
-        .duaa-section h3 {
-            color: #fbbf24;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
+        .dua-box h4 {
+            color: #f43f5e;
+            font-size: 1rem;
+            margin-bottom: 5px;
         }
-        .duaa-section p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #e2e8f0;
+        .dua-box p {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
+        /* الفوتر الفخم */
         footer {
-            margin-top: 30px;
-            font-size: 0.95rem;
-            color: #94a3b8;
+            width: 100%;
             text-align: center;
+            padding: 20px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 20px;
+            background: rgba(11, 15, 25, 0.9);
+            line-height: 1.6;
+        }
+        footer .creator {
+            color: #60a5fa;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: block;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>صدقة جارية على روح</h1>
-        <div class="name">الحاجة هدي رحمها الله 🤍</div>
+    <!-- خلفية فيديو روحانية هادئة -->
+    <video autoplay muted loop class="bg-video">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-stars-in-the-night-sky-background-4056-large.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
 
-        <div class="counter-box">
-            <div id="count">0</div>
-            <button class="btn-tasbih" onclick="incrementCount()">سبحان الله وبحمده</button>
-            <button class="btn-reset" onclick="resetCount()">تصفير العداد</button>
+    <div class="container">
+        <div class="header-title">صدقة جارية على روح</div>
+        <div class="name-title">الحاجة هدي رحمة الله عليها 🤍</div>
+
+        <!-- مشغل القرآن الكريم -->
+        <div class="quran-card">
+            <div class="quran-info">
+                <span>📖 استمع إلى القرآن الكريم</span>
+                <span style="font-size: 0.8rem; color: #cbd5e1;">القرآن بصوت الشيخ ماهر المعقيلي</span>
+            </div>
+            <audio controls>
+                <source src="https://server11.mp3quran.net/sds/001.mp3" type="audio/mpeg">
+                متصفحك لا يدعم تشغيل الصوت
+            </audio>
         </div>
 
-        <div class="duaa-section">
-            <h3>دعاء للميت:</h3>
-            <p>“اللهم اجعل قبرها روضة من رياض الجنة، ولا تجعله حفرة من حفر النيران. اللهم ارحمها برحمتك الواسعة وأسكنها فسيح جناتك.”</p>
+        <!-- بطاقة التسبيح والعداد -->
+        <div class="counter-card">
+            <div style="font-size: 0.95rem; color: #94a3b8;">اضغط للتسبيح والدعاء</div>
+            <div class="counter-display" id="counter">0</div>
+            
+            <button class="tasbeh-btn" onclick="increment()">سبحان الله وبحمده</button>
+            
+            <div class="actions-row">
+                <button class="action-btn" onclick="resetCounter()">تصفير العداد</button>
+                <button class="action-btn" onclick="changeZekr()">تغيير الذكر</button>
+            </div>
+        </div>
+
+        <!-- دعاء للميت -->
+        <div class="dua-box">
+            <h4>دعاء للمتوفاة</h4>
+            <p>اللهم ارحمها واغفر لها ووسع مدخلها، وأبدلها داراً خيراً من دارها، وأهلاً خيراً من أهلها، واجعل قبرها روضة من رياض الجنة 🤍</p>
         </div>
     </div>
 
     <footer>
-        موقع صدقة جارية - لا توقف النشر والدعاء لها
+        موقع صدقة جارية لروح الحاجة هدي رحمها الله 🤍<br>
+        <span class="creator">تصميم وبرمجة: أحمد سراج (لعمل موقع صدقة جارية تواصل معنا: 01020936772)</span>
     </footer>
 
     <script>
         let count = 0;
-        const countDisplay = document.getElementById('count');
+        const counterDisplay = document.getElementById('counter');
+        
+        const azkar = [
+            "سبحان الله وبحمده",
+            "سبحان الله العظيم",
+            "لا إله إلا الله",
+            "استغفر الله العظيم واتوب إليه",
+            "اللهم صل وسلم على نبينا محمد",
+            "لاحول ولا قوة إلا بالله"
+        ];
+        let zekrIndex = 0;
+        const tasbehBtn = document.querySelector('.tasbeh-btn');
 
-        function incrementCount() {
+        function increment() {
             count++;
-            countDisplay.innerText = count;
+            counterDisplay.innerText = count;
+            counterDisplay.style.transform = "scale(1.1)";
+            setTimeout(() => {
+                counterDisplay.style.transform = "scale(1)";
+            }, 100);
         }
 
-        function resetCount() {
+        function resetCounter() {
             if(confirm('هل تريد تصفير العداد؟')) {
                 count = 0;
-                countDisplay.innerText = count;
+                counterDisplay.innerText = count;
             }
         }
-    </script>
-</bod><footer style="text-align: center; padding: 20px; color: #94a3b8; font-size: 0.95rem;">
-    موقع صدقة جارية علي روح جدتي الحاجة هدي رحمها الله 🤍<br>
-    <span style="color: #60a5fa; font-size: 0.9rem; margin-top: 5px; display: inline-block;">
-        تصميم وبرمجة: أحمد سراج (لعمل موقع صدقة جارية  تواصل معنا (01020936772)
-    </span>
-</footer>
-    
-</html>
 
+        function changeZekr() {
+            zekrIndex = (zekrIndex + 1) % azkar.length;
+            tasbehBtn.innerText = azkar[zekrIndex];
+        }
+    </script>
+</body>
+</html>
