@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صدقة جارية</title>
+    <style>
+        body { font-family: Tahoma, sans-serif; background: #0f172a; color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; }
+        .card { background: #1e293b; padding: 25px; border-radius: 20px; width: 320px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        h2 { color: #38bdf8; margin-bottom: 15px; }
+        .counter { font-size: 45px; font-weight: bold; color: #fbbf24; margin: 15px 0; }
+        button { background: #0ea5e9; color: white; border: none; width: 100%; padding: 14px; font-size: 18px; border-radius: 30px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <p>صدقة جارية على روح</p>
+        <h2>ستي رحمة الله عليها ♡︎الحاجه هدي ♡︎</h2>
+        <div class="counter" id="c">0</div>
+        <button onclick="up()">سبحان الله وبحمده</button>
+    </div>
+    <script>
+        let n = localStorage.getItem('s') || 0;
+        document.getElementById('c').innerText = n;
+        function up() { n++; document.getElementById('c').innerText = n; localStorage.setItem('s', n); }
+    </script>
+</body>
+</html>
